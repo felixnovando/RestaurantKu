@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Reservation;
+use App\Http\Controllers\Order;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +21,8 @@ Route::get('/ReservationHome', [Reservation::class,'ReservationHome']);
 Route::get('/ReservationMenu/{restaurantId}', [Reservation::class,'ReservationMenu']);
 Route::get('/ReservationDetail/{restaurantId}', [Reservation::class,'ReservationDetail']);
 Route::get('/ReservationConfirmation/{restaurantId}', [Reservation::class,'ReservationConfirmation']);
+
+Route::get('/OrderHome', [Order::class,'OrderHome']);
+Route::get('/OrderMenu/{restaurantId}', [Order::class,'OrderMenu']);
+Route::get('/OrderDetail/{restaurantId}', [Order::class,'OrderDetail']);
+Route::get('/OrderConfirmation/{restaurantId}', [Order::class,'OrderConfirmation']);

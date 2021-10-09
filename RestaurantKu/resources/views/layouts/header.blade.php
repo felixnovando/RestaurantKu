@@ -5,7 +5,7 @@
     <div class="flex flex-row justify-around font-extrabold text-white">
         <a href="">Home</a>
         <a href="{{url('/ReservationType')}}">Reservation</a>
-        <a href="">Order</a>
+        <a href="{{url('/OrderHome')}}">Order</a>
         <a href="">PickUp</a>
     </div>
     <div>
