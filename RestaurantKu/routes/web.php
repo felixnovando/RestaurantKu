@@ -14,6 +14,12 @@ use App\Http\Controllers\Order;
 |
 */
 Route::get('/', [Reservation::class,'Master']);
+Route::get('/first', [Reservation::class, 'firstPageView']);
+Route::get('/login', [Reservation::class, 'loginView']);
+Route::get('/signup', [Reservation::class, 'signUpVew']);
+Route::get('/forgot', [Reservation::class, 'forgotView']);
+Route::get('/home', [Reservation::class, 'homeMenuView']);
+
 Route::get('/ReservationType', [Reservation::class,'ReservationType']);
 Route::get('/ReservationHistoryPast', [Reservation::class,'ReservationHistoryPast']);
 Route::get('/ReservationHistoryUpcoming', [Reservation::class,'ReservationHistoryUpcoming']);
