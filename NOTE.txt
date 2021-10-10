@@ -1,0 +1,3 @@
+di controller.php atau order.php yang bagian OrderDetail dan OrderConfirmation masih pake codingan reservation.
+
+kalau kata "Reservation" di ganti jadi "Order". dio error ak dk tw kenapo.
