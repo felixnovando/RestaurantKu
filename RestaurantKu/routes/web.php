@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Reservation;
 use App\Http\Controllers\Order;
+use App\Http\Controllers\Pickup;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +33,9 @@ Route::get('/OrderHome', [Order::class,'OrderHome']);
 Route::get('/OrderMenu/{restaurantId}', [Order::class,'OrderMenu']);
 Route::get('/OrderDetail/{restaurantId}', [Order::class,'OrderDetail']);
 Route::get('/OrderConfirmation/{restaurantId}', [Order::class,'OrderConfirmation']);
+
+Route::get('/PickupHome', [Pickup::class,'PickupHome']);
+Route::get('/PickupMenu', [Pickup::class,'PickupMenu']);
+Route::get('/PickupMenu/{restaurantId}', [Pickup::class,'PickupMenu']);
+Route::get('/PickupDetail/{restaurantId}', [Pickup::class,'PickupDetail']);
+Route::get('/PickupConfirmation/{restaurantId}', [Pickup::class,'PickupConfirmation']);
