@@ -16,14 +16,16 @@
                 @else
                     <div class="carousel-item ">
                 @endif
+
                     <div class="row ">
-                        <a href="{{url('/ReservationMenu',['restaurantId' => $restaurants[0+$i+$i+$i+$i]["restaurantId"]])}}" class="flex flex-col items-center justify-center p-1.5  rounded-xl h-80 col-3">
-                            <img class="object-fill w-full h-64 rounded-xl" src="{{$restaurants[0+$i+$i+$i+$i]["PhotoUrl"]}}">
+                        @for($i = 0; $i < count($restaurants); $i++)
+                        <a href="/ReservationMenu/{{$restaurants[0]->id}}" class="flex flex-col items-center justify-center p-1.5  rounded-xl h-80 col-3">
+                            <img class="object-fill w-full h-64 rounded-xl" src="{{$restaurants[$i]->path}}">
                             <div class="flex flex-col items-center justify-center">
-                                <div>{{$restaurants[0+$i+$i+$i+$i]["Name"]}}</div>
+                                <div>{{$restaurants[$i]->resto_name}}</div>
                                 <div style="color: grey">
                                     @for ($j=1;$j<=5;$j++)
-                                        @if ($j<=(int)$restaurants[0+$i+$i+$i+$i]["Rating"])
+                                        @if ($j<=(int)$restaurants[$i]->resto_rating)
                                             <i class="fas fa-star"></i>
                                         @else
                                             <i class="far fa-star"></i>
@@ -32,59 +34,16 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="{{url('/ReservationMenu',['restaurantId' => $restaurants[1+$i+$i+$i+$i]["restaurantId"]])}}" class="flex flex-col items-center justify-center p-1.5  rounded-xl h-80 col-3">
-                            <img class="object-fill w-full h-64 rounded-xl"  src="{{$restaurants[1+$i+$i+$i+$i]["PhotoUrl"]}}">
-                            <div class="flex flex-col items-center justify-center">
-                                <div>{{$restaurants[1+$i+$i+$i+$i]["Name"]}}</div>
-                                <div style="color: grey">
-                                    @for ($j=1;$j<=5;$j++)
-                                        @if ($j<=(int)$restaurants[1+$i+$i+$i+$i]["Rating"])
-                                            <i class="fas fa-star"></i>
-                                        @else
-                                            <i class="far fa-star"></i>
-                                        @endif
-                                    @endfor
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{{url('/ReservationMenu',['restaurantId' => $restaurants[2+$i+$i+$i+$i]["restaurantId"]])}}" class="flex flex-col items-center justify-center p-1.5 rounded-xl h-80 col-3">
-                            <img class="object-fill w-full h-64 rounded-xl"src="{{$restaurants[2+$i+$i+$i+$i]["PhotoUrl"]}}" >
-                            <div class="flex flex-col items-center justify-center">
-                                <div>{{$restaurants[0+$i+$i+$i+$i]["Name"]}}</div>
-                                <div style="color: grey">
-                                    @for ($j=1;$j<=5;$j++)
-                                        @if ($j<=(int)$restaurants[2+$i+$i+$i+$i]["Rating"])
-                                            <i class="fas fa-star"></i>
-                                        @else
-                                            <i class="far fa-star"></i>
-                                        @endif
-                                    @endfor
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{{url('/ReservationMenu',['restaurantId' => $restaurants[3+$i+$i+$i+$i]["restaurantId"]])}}" class="flex flex-col items-center justify-center p-1.5  rounded-xl h-80 col-3">
-                            <img class="object-fill w-full h-64 rounded-xl"src="{{$restaurants[3+$i+$i+$i+$i]["PhotoUrl"]}}" >
-                            <div class="flex flex-col items-center justify-center">
-                                <div>{{$restaurants[0+$i+$i+$i+$i]["Name"]}}</div>
-                                <div style="color: grey">
-                                    @for ($j=1;$j<=5;$j++)
-                                        @if ($j<=(int)$restaurants[3+$i+$i+$i+$i]["Rating"])
-                                            <i class="fas fa-star"></i>
-                                        @else
-                                            <i class="far fa-star"></i>
-                                        @endif
-                                    @endfor
-                                </div>
-                            </div>
-                        </a>
+                        @endfor
+
                     </div>
                 </div>
                 @endfor
-            <a class="p-0 m-0 carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+            <a href="{{$restaurants->previousPageUrl()}}" class="p-0 m-0 carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
                 <span class="p-0 m-0 carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+            <a href="{{$restaurants->nextPageUrl()}} "class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
@@ -101,74 +60,33 @@
                     <div class="carousel-item ">
                 @endif
                     <div class="row ">
-                        <a href="{{url('/ReservationMenu',['restaurantId' => $restaurants[0+$i+$i+$i+$i]["restaurantId"]])}}" class="flex flex-col items-center justify-center p-1.5  rounded-xl h-80 col-3">
-                            <img class="object-fill w-full h-64 rounded-xl" src="{{$restaurants[0+$i+$i+$i+$i]["PhotoUrl"]}}">
-                            <div class="flex flex-col items-center justify-center">
-                                <div>{{$restaurants[0+$i+$i+$i+$i]["Name"]}}</div>
-                                <div style="color: grey">
-                                    @for ($j=1;$j<=5;$j++)
-                                        @if ($j<=(int)$restaurants[0+$i+$i+$i+$i]["Rating"])
-                                            <i class="fas fa-star"></i>
-                                        @else
-                                            <i class="far fa-star"></i>
-                                        @endif
-                                    @endfor
+
+                        @for($i=0; $i < count($restaurants); $i++)
+                            <a href="/ReservationMenu/{{$restaurants[0]->id}}" class="flex flex-col items-center justify-center p-1.5  rounded-xl h-80 col-3">
+                                <img class="object-fill w-full h-64 rounded-xl" src="{{$restaurants[$i]->path}}">
+                                <div class="flex flex-col items-center justify-center">
+                                    <div>{{$restaurants[$i]->resto_name}}</div>
+                                    <div style="color: grey">
+                                        @for ($j=1;$j<=5;$j++)
+                                            @if ($j<=(int)$restaurants[$i]->resto_rating)
+                                                <i class="fas fa-star"></i>
+                                            @else
+                                                <i class="far fa-star"></i>
+                                            @endif
+                                        @endfor
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a href="{{url('/ReservationMenu',['restaurantId' => $restaurants[1+$i+$i+$i+$i]["restaurantId"]])}}" class="flex flex-col items-center justify-center p-1.5  rounded-xl h-80 col-3">
-                            <img class="object-fill w-full h-64 rounded-xl"  src="{{$restaurants[1+$i+$i+$i+$i]["PhotoUrl"]}}">
-                            <div class="flex flex-col items-center justify-center">
-                                <div>{{$restaurants[1+$i+$i+$i+$i]["Name"]}}</div>
-                                <div style="color: grey">
-                                    @for ($j=1;$j<=5;$j++)
-                                        @if ($j<=(int)$restaurants[1+$i+$i+$i+$i]["Rating"])
-                                            <i class="fas fa-star"></i>
-                                        @else
-                                            <i class="far fa-star"></i>
-                                        @endif
-                                    @endfor
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{{url('/ReservationMenu',['restaurantId' => $restaurants[2+$i+$i+$i+$i]["restaurantId"]])}}" class="flex flex-col items-center justify-center p-1.5 rounded-xl h-80 col-3">
-                            <img class="object-fill w-full h-64 rounded-xl"src="{{$restaurants[2+$i+$i+$i+$i]["PhotoUrl"]}}" >
-                            <div class="flex flex-col items-center justify-center">
-                                <div>{{$restaurants[0+$i+$i+$i+$i]["Name"]}}</div>
-                                <div style="color: grey">
-                                    @for ($j=1;$j<=5;$j++)
-                                        @if ($j<=(int)$restaurants[2+$i+$i+$i+$i]["Rating"])
-                                            <i class="fas fa-star"></i>
-                                        @else
-                                            <i class="far fa-star"></i>
-                                        @endif
-                                    @endfor
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{{url('/ReservationMenu',['restaurantId' => $restaurants[3+$i+$i+$i+$i]["restaurantId"]])}}" class="flex flex-col items-center justify-center p-1.5  rounded-xl h-80 col-3">
-                            <img class="object-fill w-full h-64 rounded-xl"src="{{$restaurants[3+$i+$i+$i+$i]["PhotoUrl"]}}" >
-                            <div class="flex flex-col items-center justify-center">
-                                <div>{{$restaurants[0+$i+$i+$i+$i]["Name"]}}</div>
-                                <div style="color: grey">
-                                    @for ($j=1;$j<=5;$j++)
-                                        @if ($j<=(int)$restaurants[3+$i+$i+$i+$i]["Rating"])
-                                            <i class="fas fa-star"></i>
-                                        @else
-                                            <i class="far fa-star"></i>
-                                        @endif
-                                    @endfor
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        @endfor
+
                     </div>
                 </div>
                 @endfor
-            <a class="p-0 m-0 carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+            <a href="{{$restaurants->previousPageUrl()}}" class="p-0 m-0 carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
                 <span class="p-0 m-0 carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+            <a href="{{$restaurants->nextPageUrl()}}" class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
