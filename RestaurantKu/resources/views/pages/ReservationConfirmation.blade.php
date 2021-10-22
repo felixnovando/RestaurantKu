@@ -47,7 +47,7 @@
         });
         $('#addcard').click(function(){
             console.log("input")
-            window.location.href="{{url('/')}}";
+            window.location.href="{{url('/ReservationDetail',['restaurantId' => $restaurant[0]['restaurantId']])}}";
         })
     });
     $('#datepicker').datepicker({
@@ -62,57 +62,52 @@
                 <div class="flex items-center justify-around ">
                     <div class="text-3xl font-medium">Adult</div>
                     <div class='main'>
-                        <input class='m-1 text-2xl counter' type="text" placeholder="value..." value='{{$reservation->adult_seats}}' disabled/>
+                        <input class='m-1 text-2xl counter' type="text" placeholder="value..." value='1' disabled/>
                     </div>
                 </div>
                 <div class="flex items-center justify-around ">
                     <div class="text-3xl font-medium">Child</div>
                     <div class='main'>
-                        <input class='m-1 text-2xl counter' type="text" placeholder="value..." value='{{$reservation->child_seats}}' disabled/>
+                        <input class='m-1 text-2xl counter' type="text" placeholder="value..." value='2' disabled/>
                     </div>
                 </div>
                 <div class="flex items-center justify-around ">
                     <div class="text-3xl font-medium">Baby</div>
                     <div class='main'>
-                        <input class='m-1 text-2xl counter' type="text" placeholder="value..." value='{{$reservation->baby_seats}}' disabled/>
+                        <input class='m-1 text-2xl counter' type="text" placeholder="value..." value='3' disabled/>
                     </div>
                 </div>
             </div>
             <div class="flex flex-col gap-y-4">
-                @php
-                    $time = new DateTime($reservation->reservation_time);
-                @endphp
-
                 <div class="my-10 text-4xl font-semibold">Date/Time</div>
                 <div  class="grid items-center justify-between grid-cols-2 ">
                     <div class="text-2xl font-medium">Date</div>
-                    <div class="w-full"><input class="w-full text-2xl" data-provide="datepicker" data-date-format="dd/mm/yyyy" placeholder="Date" value="{{$time->format("m/d/Y")}}" disabled></div>
+                    <div class="w-full"><input class="w-full text-2xl" data-provide="datepicker" data-date-format="dd/mm/yyyy" placeholder="Date" value="11/11/2021" disabled></div>
                 </div>
                 <div class="grid items-center justify-between grid-cols-2 ">
                     <div class="text-2xl font-medium">Time</div>
-                    <div  class="w-full"><input class="w-full text-2xl" placeholder="Time" disabled value="{{$time->format("H:i")}}"></div>
+                    <div  class="w-full"><input class="w-full text-2xl" placeholder="Time" value="11.11" disabled></div>
                 </div>
                 <div class="grid items-center justify-between grid-cols-2 ">
                     <div class="text-2xl font-medium">Total</div>
-                    <div  class="w-full"><input disabled  class="w-full text-2xl "  type="text" name="" id=""  value="{{$total}}"> </div>
+                    <div  class="w-full"><input disabled  class="w-full text-2xl "  type="text" name="" id=""  value="1234"> </div>
                 </div>
                 <div class="text-2xl font-medium">
                     Please come 15 minutes before your reservation time !
                 </div>
 
             </div>
-            <a href="/" class="flex justify-center my-4"><input type="button" class="p-4 text-4xl btn btn-primary" value="Back To Home"/></a>
+            <div class="flex justify-center my-4"><input type="button" class="p-4 text-4xl btn btn-primary" value="Back To Home"/></div>
         </div>
     </div>
     <div style="grid-column-start: 2" class="relative flex flex-col gap-y-5">
-
-        @foreach ($reservation->order->details as $detail)
+        @foreach ( $menuOrder as $menuIndex)
             <div class="flex p-2 bg-white rounded-lg shadow-md">
-                <div style="width: 150px; height: 100px;"><img class="object-fill h-full min-w-full" src="{{URL::asset($detail->menu->menu_image)}}"/></div>
+                <div style="width: 150px; height: 100px;"><img class="object-fill h-full min-w-full" src="{{$menuIndex["Image"]}}"/></div>
                 <div class="ml-2">
-                    <div class="text-3xl font-semibold">{{$detail->menu->menu_name}}</div>
-                    <div class="text-xl font-semibold">Rp.{{$detail->menu->menu_price}}.00,-</div>
-                    <div class="text-xl font-semibold">{{$detail->qty}}</div>
+                    <div class="text-3xl font-semibold">{{$menuIndex["Title"]}}</div>
+                    <div class="text-xl font-semibold">Rp. {{$menuIndex["Price"]}}.000,00,-</div>
+                    <div class="text-xl font-semibold">{{$menuIndex["Order"]}}</div>
                 </div>
             </div>
         @endforeach

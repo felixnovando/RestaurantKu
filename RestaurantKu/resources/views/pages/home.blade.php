@@ -35,6 +35,9 @@
         .content > a >  div > p{
             font-size: 18px;
         }
+        .content > a:hover{
+            background-color: red;
+        }
         .logo{
             width: 250px;
             margin-bottom: 10px;
@@ -44,7 +47,7 @@
             object-fit: cover;
         }
     </style>
-
+    
 @endsection
 
 
@@ -53,15 +56,15 @@
         @include('layouts.beforeLoginHeader')
         <div class="content">
             <img src="storage/assets/images/logo.jpg" alt="" class="logo">
-
-            <a href="./ReservationHome">
+            
+            <a href="">
                 <div>
                     <img src="storage/assets/images/chair.png" alt="" class="logo-button">
                     <p>Reservation</p>
                 </div>
             </a>
 
-            <a href="./OrderHome">
+            <a href="">
                 <div>
                     <img src="storage/assets/images/plate.png" alt="" class="logo-button">
                     <p>Order</p>
@@ -69,13 +72,13 @@
             </a>
 
 
-            <a href="./PickupHome">
+            <a href="">
                 <div>
                     <img src="storage/assets/images/bag.png" alt="" class="logo-button">
                     <p>Pick - Up</p>
                 </div>
             </a>
-
+                
         </div>
     </div>
 @endsection

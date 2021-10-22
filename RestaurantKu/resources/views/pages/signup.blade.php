@@ -44,7 +44,7 @@
         }
         .gender > div{
             display: flex;
-
+            
         }
         .gender > div > div{
             display: flex;
@@ -89,7 +89,7 @@
             color: red;
         }
     </style>
-
+    
 @endsection
 
 
@@ -98,44 +98,39 @@
         @include('layouts.beforeLoginHeader')
         <div class="content">
             <img src="storage/assets/images/logo.jpg" alt="" class="logo">
-
-            <form action="/signup" method="post">
-                {{csrf_field()}}
+            
+            <form action="">
                 <div>
                     <h2>Create An Account</h2>
                     <br>
-                    <input type="text" name="email" id="" placeholder="email">
+                    <input type="text" name="" id="" placeholder="email">
                     <br>
-                    <input type="text" name="name" id="" placeholder="name">
-                    <br>
-                    <input type="password" name="password" id="" placeholder="password">
+                    <input type="password" name="" id="" placeholder="password">
                 </div>
                 <div class="gender">
                     <h2>Gender</h2>
                     <div>
                         <div>
-                            <input type="radio" name="gender" id="male" value="male">
+                            <input type="radio" name="gender" id="male">
                             <label for="male">Male</label>
                         </div>
                         <div>
-                            <input type="radio" name="gender" id="female" value="female">
+                            <input type="radio" name="gender" id="female">
                             <label for="female">Female</label>
                         </div>
                     </div>
                 </div>
                 <div>
                     <h2>Birthday</h2>
-                    <input type="date" name="date" id="">
+                    <input type="date" name="" id="">
                 </div>
-
+                    
                 <div class="terms">
-                    <input type="checkbox" name="term" id="" value="term">
+                    <input type="checkbox" name="" id="">
                     <p>I Agree to the <span>Term of Use</span> and <span>Privacy Police</span></p>
                 </div>
 
-                @if($errors->any())
-                    <div class="error">{{$errors->first()}}</div>
-                @endif
+                <div class="error">User already registered</div>
 
                 <button class="loginBtn"><p>Create</p></button>
             </form>

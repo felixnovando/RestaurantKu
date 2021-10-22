@@ -48,32 +48,27 @@
         $('#addcard').click(function(){
             console.log("input")
             window.location.href="{{url('/PickupDetail',['restaurantId' => $restaurant[0]['restaurantId']])}}";
-        });
+        })
+        $('#Order').click(function(){
+            console.log("input")
+            window.location.href="{{url('/PickupConfirmation',['restaurantId' => $restaurant[0]['restaurantId']])}}";
+        })
         $('#datepicker').datepicker({
                 uiLibrary: 'bootstrap4'
             });
     });
     </script>
 <div style="grid-template-columns: 1fr 1fr" class="grid grid-cols-2 grid-rows-1 m-4">
-    <form method="post" target="_self"  style="grid-column-start: 2; " class="fixed flex items-center justify-center ">
-        {{csrf_field()}}
+    <div style="grid-column-start: 2; " class="fixed flex items-center justify-center ">
         <div class="sticky top-0 w-full p-4 rounded-lg shadow-md bg-gray-50">
             <div class="flex flex-col gap-y-4">
-                <div  class="grid items-center justify-between grid-cols-2 ">
-                    <div class="text-2xl font-medium">Date</div>
-                    <div class="w-full"><input name="date" class="w-full text-2xl" data-provide="datepicker" data-date-format="dd/mm/yyyy" placeholder="Date"></div>
-                </div>
-                <div class="grid items-center justify-between grid-cols-2 ">
-                    <div class="text-2xl font-medium">Time</div>
-                    <div  class="w-full"><input class="w-full text-2xl" type="time" name="time" placeholder="Time"></div>
-                </div>
                 <div  class="grid items-center justify-between grid-cols-2 ">
                     <div class="text-2xl font-medium">Voucher</div>
                     <div  class="w-full"><input  class="w-full text-2xl"  type="text" name="" id=""  placeholder="Enter Your Voucher"> </div>
                 </div>
                 <div class="grid items-center justify-between grid-cols-2 ">
                     <div class="text-2xl font-medium">Total</div>
-                    <div  class="w-full"><input disabled  class="w-full text-2xl "  type="text" name="" id=""  value="{{$totalPrice}}"> </div>
+                    <div  class="w-full"><input disabled  class="w-full text-2xl "  type="text" name="" id=""  value="1234"> </div>
                 </div>
                 <div class="grid items-center justify-between grid-cols-2 ">
                     <div class="w-full text-2xl font-medium">Payment Method</div>
@@ -86,23 +81,20 @@
                       </div>
                 </div>
             </div>
-            <div class="flex justify-center my-4"><input id="Order" type="submit" class="p-4 text-4xl btn btn-primary" value="Pay"/></div>
+            <div class="flex justify-center my-4"><input id="Order" type="button" class="p-4 text-4xl btn btn-primary" value="Pay"/></div>
         </div>
-    </form>
+    </div>
     <div style="grid-column-start: 2" class="relative flex flex-col gap-y-5">
-        @for ($i = 0; $i < count($menuOrder); $i++)
-            @php
-                if($_SESSION['pickup_menu_qty'][$i] < 1) continue;
-            @endphp
+        @foreach ( $menuOrder as $menuIndex)
             <div class="flex p-2 bg-white rounded-lg shadow-md">
-                <div style="width: 150px; height: 100px;"><img class="object-fill h-full min-w-full" src="{{\Illuminate\Support\Facades\URL::asset($menuOrder[$i]["menu_image"])}}"/></div>
+                <div style="width: 150px; height: 100px;"><img class="object-fill h-full min-w-full" src="{{$menuIndex["Image"]}}"/></div>
                 <div class="ml-2">
-                    <div class="text-3xl font-semibold">{{$menuOrder[$i]["menu_name"]}}</div>
-                    <div class="text-xl font-semibold">Rp. {{$menuOrder[$i]["menu_price"]}}.00,-</div>
-                    <div class="text-xl font-semibold">{{$_SESSION['pickup_menu_qty'][$i]}}</div>
+                    <div class="text-3xl font-semibold">{{$menuIndex["Title"]}}</div>
+                    <div class="text-xl font-semibold">Rp. {{$menuIndex["Price"]}}.000,00,-</div>
+                    <div class="text-xl font-semibold">{{$menuIndex["Order"]}}</div>
                 </div>
             </div>
-        @endfor
+        @endforeach
     </div>
 </div>
 @endsection
