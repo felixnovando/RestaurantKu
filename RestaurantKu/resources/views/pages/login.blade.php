@@ -59,7 +59,7 @@
             color: red;
         }
     </style>
-    
+
 @endsection
 
 
@@ -69,12 +69,15 @@
         <div class="content">
             <img src="storage/assets/images/logo.jpg" alt="" class="logo">
 
-            <form action="">
-                <input type="text" name="" id="" placeholder="email">
-                <input type="password" name="" id="" placeholder="password">
-                <a href="">Forgot Password ?</a>
+            <form action="/login" method="POST">
+                {{csrf_field()}}
+                <input type="text" name="email" id="" placeholder="email">
+                <input type="password" name="password" id="" placeholder="password">
+                <a href="/forgot">Forgot Password ?</a>
 
-                <div class="error">invalid username or password</div>
+                @if($errors->any())
+                    <div class="error">{{$errors->first()}}</div>
+                @endif
 
                 <button class="loginBtn"><p>LOGIN</p></button>
             </form>

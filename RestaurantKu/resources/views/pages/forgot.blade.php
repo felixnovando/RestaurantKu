@@ -88,10 +88,10 @@
             font-size: 18px;
             left: 45%;
             padding: 5px;
-            background-color: white;    
+            background-color: white;
         }
     </style>
-    
+
 @endsection
 
 
@@ -103,7 +103,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="logo" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
-            
+
             <form action="">
                 <div>
                     <p class="statement">Enter your email, phone, or username and we'll send you a link to get back to your account</p>
@@ -119,11 +119,11 @@
                 <div class="line"></div>
                 <span>OR</span>
             </div>
-            
 
-            <a href="" class="loginBtn otherLink"><p>Create New Account</p></a>
 
-            <a href="" class="loginBtn otherLink"><p>Back To Login</p></a>
+            <a href="/signup" class="loginBtn otherLink"><p>Create New Account</p></a>
+
+            <a href="/login" class="loginBtn otherLink"><p>Back To Login</p></a>
 
         </div>
     </div>
