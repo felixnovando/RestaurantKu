@@ -47,7 +47,7 @@
             font-size: 20px;
         }
     </style>
-    
+
 @endsection
 
 
@@ -56,25 +56,25 @@
         @include('layouts.beforeLoginHeader')
         <div class="content">
             <img src="storage/assets/images/logo.jpg" alt="" class="logo">
-            
+
             <h1>Welcome to RestoranKU</h1>
 
             <div class="msg">
                 <p>New to RestoranKU App?</p>
                 <p>Consider Signing Up</p>
-            </div>  
-            
-            <a href=""><p>Sign Up</p></a>
+            </div>
+
+            <a href="/signup"><p>Sign Up</p></a>
 
             <p class="or">Or</p>
 
             <div class="msg">
-                <p>You Already Have An Account ?</p>
+                <p>Already Have An Account ?</p>
                 <p>Then Please Continue to Login</p>
             </div>
-            
 
-            <a href=""><p>Login</p></a>
+
+            <a href="login"><p>Login</p></a>
         </div>
     </div>
 @endsection

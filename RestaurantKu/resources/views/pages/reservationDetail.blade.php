@@ -51,15 +51,17 @@
         })
         $('#reserve').click(function(){
             console.log("input")
-            window.location.href="{{url('/ReservationConfirmation',['restaurantId' => $restaurant[0]['restaurantId']])}}";
+            window.location.href="{{url('/ReservationConfirmation',['restaurantId' => $restaurant[0]['id']])}}";
         })
         $('#datepicker').datepicker({
                 uiLibrary: 'bootstrap4'
             });
     });
     </script>
+
 <div style="grid-template-columns: 1fr 1fr" class="grid grid-cols-2 grid-rows-1 m-4">
-    <div style="grid-column-start: 2; " class="fixed flex items-center justify-center ">
+    <form method="POST" target="_self" style="grid-column-start: 2; " class="fixed flex items-center justify-center ">
+        {{csrf_field()}}
         <div class="sticky top-0 w-full p-4 rounded-lg shadow-md bg-gray-50">
             <div >
                 <div class="mb-10 text-4xl font-semibold">Capacity</div>
@@ -67,7 +69,7 @@
                     <div class="text-3xl font-medium">Adult</div>
                     <div class='main'>
                         <button class='down_count btn btn-info' title='Down'><i class="fas fa-minus"></i></button>
-                            <input class='m-1 counter' type="text" placeholder="value..." value='0' />
+                            <input class='m-1 counter' name="adult_count" type="text" placeholder="value..." value='0' />
                         <button class='up_count btn btn-info' title='Up'><i class="fas fa-plus"></i></button>
                     </div>
                 </div>
@@ -75,7 +77,7 @@
                     <div class="text-3xl font-medium">Child</div>
                     <div class='main'>
                         <button class='down_count btn btn-info' title='Down'><i class="fas fa-minus"></i></button>
-                            <input class='m-1 counter' type="text" placeholder="value..." value='0' />
+                            <input class='m-1 counter' name="child_count" type="text" placeholder="value..." value='0' />
                         <button class='up_count btn btn-info' title='Up'><i class="fas fa-plus"></i></button>
                     </div>
                 </div>
@@ -83,7 +85,7 @@
                     <div class="text-3xl font-medium">Baby</div>
                     <div class='main'>
                         <button class='down_count btn btn-info' title='Down'><i class="fas fa-minus"></i></button>
-                            <input class='m-1 counter' type="text" placeholder="value..." value='0' />
+                            <input class='m-1 counter' name="baby_count" type="text" placeholder="value..." value='0' />
                         <button class='up_count btn btn-info' title='Up'><i class="fas fa-plus"></i></button>
                     </div>
                 </div>
@@ -92,11 +94,11 @@
                 <div class="my-10 text-4xl font-semibold">Date/Time</div>
                 <div  class="grid items-center justify-between grid-cols-2 ">
                     <div class="text-2xl font-medium">Date</div>
-                    <div class="w-full"><input class="w-full text-2xl" data-provide="datepicker" data-date-format="dd/mm/yyyy" placeholder="Date"></div>
+                    <div class="w-full"><input name="date" class="w-full text-2xl" data-provide="datepicker" data-date-format="dd/mm/yyyy" placeholder="Date"></div>
                 </div>
                 <div class="grid items-center justify-between grid-cols-2 ">
                     <div class="text-2xl font-medium">Time</div>
-                    <div  class="w-full"><input class="w-full text-2xl" placeholder="Time"></div>
+                    <div  class="w-full"><input class="w-full text-2xl" type="time" name="time" placeholder="Time"></div>
                 </div>
                 <div  class="grid items-center justify-between grid-cols-2 ">
                     <div class="text-2xl font-medium">Voucher</div>
@@ -104,7 +106,7 @@
                 </div>
                 <div class="grid items-center justify-between grid-cols-2 ">
                     <div class="text-2xl font-medium">Total</div>
-                    <div  class="w-full"><input disabled  class="w-full text-2xl "  type="text" name="" id=""  value="1234"> </div>
+                    <div  class="w-full"><input disabled  class="w-full text-2xl "  type="text" name="" id=""  value="{{$totalPrice}}"> </div>
                 </div>
                 <div class="grid items-center justify-between grid-cols-2 ">
                     <div class="w-full text-2xl font-medium">Payment Method</div>
@@ -117,20 +119,23 @@
                       </div>
                 </div>
             </div>
-            <div class="flex justify-center my-4"><input id="reserve" type="button" class="p-4 text-4xl btn btn-primary" value="Reserve"/></div>
+            <div class="flex justify-center my-4"><input id="reserve" name="submit" type="submit" class="p-4 text-4xl btn btn-primary" value="Reserve"/></div>
         </div>
-    </div>
+    </form>
     <div style="grid-column-start: 2" class="relative flex flex-col gap-y-5">
-        @foreach ( $menuOrder as $menuIndex)
+        @for ($i = 0; $i < count($menuOrder); $i++)
+            @php
+                if($_SESSION['reservation_menu_qty'][$i] < 1) continue;
+            @endphp
             <div class="flex p-2 bg-white rounded-lg shadow-md">
-                <div style="width: 150px; height: 100px;"><img class="object-fill h-full min-w-full" src="{{$menuIndex["Image"]}}"/></div>
+                <div style="width: 150px; height: 100px;"><img class="object-fill h-full min-w-full" src="{{\Illuminate\Support\Facades\URL::asset($menuOrder[$i]["menu_image"])}}"/></div>
                 <div class="ml-2">
-                    <div class="text-3xl font-semibold">{{$menuIndex["Title"]}}</div>
-                    <div class="text-xl font-semibold">Rp. {{$menuIndex["Price"]}}.000,00,-</div>
-                    <div class="text-xl font-semibold">{{$menuIndex["Order"]}}</div>
+                    <div class="text-3xl font-semibold">{{$menuOrder[$i]["menu_name"]}}</div>
+                    <div class="text-xl font-semibold">Rp. {{$menuOrder[$i]["menu_price"]}}.00,-</div>
+                    <div class="text-xl font-semibold">{{$_SESSION['reservation_menu_qty'][$i]}}</div>
                 </div>
             </div>
-        @endforeach
+        @endfor
     </div>
 </div>
 @endsection
