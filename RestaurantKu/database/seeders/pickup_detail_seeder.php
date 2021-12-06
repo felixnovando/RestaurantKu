@@ -81,6 +81,11 @@ class pickup_detail_seeder extends Seeder
             'qty' => 3,
             'description' => 'no chili'
         ]);
-
+        DB::table('pickup_details')->insert([
+            'pickup_id' => 5,
+            'menu_id' => 7,
+            'qty' => 3,
+            'description' => 'no chili'
+        ]);
     }
 }

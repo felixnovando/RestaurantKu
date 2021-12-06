@@ -51,4 +51,7 @@ Route::get('Restaurant/Menu', [RestoController::class,'menuListPage']);
 Route::get('Restaurant/Menu/Add', [RestoController::class,'addMenuPage']);
 Route::post('Restaurant/Menu/SaveData', [RestoController::class,'fileUpload']);
 Route::get('Restaurant/Transaction', [RestoController::class,'transactionPage']);
-Route::get('Restaurant/Transaction/Detail', [RestoController::class,'transactionDetailPage']);
+Route::get('Restaurant/Transaction/Detail/{type}/{id}', [RestoController::class,'transactionDetailPage']);
+
+Route::get('Restaurant/Transaction/Detail/accept/{type}/{id}', [RestoController::class,'acceptOrder']);
+Route::get('Restaurant/Transaction/Detail/reject/{type}/{id}', [RestoController::class,'rejectOrder']);

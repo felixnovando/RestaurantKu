@@ -19,7 +19,7 @@
 
                     <div class="row ">
                         @for($i = 0; $i < count($restaurants); $i++)
-                        <a href="/ReservationMenu/{{$restaurants[0]->id}}" class="flex flex-col items-center justify-center p-1.5  rounded-xl h-80 col-3">
+                        <a href="/ReservationMenu/{{$restaurants[$i]->id}}" class="flex flex-col items-center justify-center p-1.5  rounded-xl h-80 col-3">
                             <img class="object-fill w-full h-64 rounded-xl" src="{{$restaurants[$i]->path}}">
                             <div class="flex flex-col items-center justify-center">
                                 <div>{{$restaurants[$i]->resto_name}}</div>
@@ -62,7 +62,7 @@
                     <div class="row ">
 
                         @for($i=0; $i < count($restaurants); $i++)
-                            <a href="/ReservationMenu/{{$restaurants[0]->id}}" class="flex flex-col items-center justify-center p-1.5  rounded-xl h-80 col-3">
+                            <a href="/ReservationMenu/{{$restaurants[$i]->id}}" class="flex flex-col items-center justify-center p-1.5  rounded-xl h-80 col-3">
                                 <img class="object-fill w-full h-64 rounded-xl" src="{{$restaurants[$i]->path}}">
                                 <div class="flex flex-col items-center justify-center">
                                     <div>{{$restaurants[$i]->resto_name}}</div>

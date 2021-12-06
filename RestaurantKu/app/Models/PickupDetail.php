@@ -18,4 +18,8 @@ class PickupDetail extends Model
     public function menu(){
         return $this->hasOne(Menu::class, 'id', 'menu_id');
     }
+
+    public function pickup(){
+        return $this->hasOne(Pickup::class, 'id', 'pickup_id');
+    }
 }

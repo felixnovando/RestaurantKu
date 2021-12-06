@@ -73,6 +73,7 @@ class PickUpController extends Controller
         $restaurant = Resto::where('id',  '=', $restaurantId)->get();
         $totalPrice = 0;
 
+//        $_SESSION['pickup_menu_qty'][$i]
         for($i=0; $i<count($menus); $i++){
             if($_SESSION['pickup_menu_qty'][$i] > 0){
                 $totalPrice += $menus[$i]['menu_price'] * $_SESSION['pickup_menu_qty'][$i];
@@ -98,13 +99,13 @@ class PickUpController extends Controller
 
         $pickupHeader->save();
         //detail
-        $len = count($_SESSION['order_menu_qty']);
+        $len = count($_SESSION['pickup_menu_qty']);
         for($i = 0; $i < $len; $i++){
-            if($_SESSION['order_menu_qty'][$i] > 0){
+            if($_SESSION['pickup_menu_qty'][$i] > 0){
                 DB::table('pickup_details')->insert([
                     'pickup_id' => $pickupHeader->id,
-                    'menu_id' => $_SESSION['order_menu_ids'][$i],
-                    'qty' => $_SESSION['order_menu_qty'][$i],
+                    'menu_id' => $_SESSION['pickup_menu_ids'][$i],
+                    'qty' => $_SESSION['pickup_menu_qty'][$i],
                     'description' => ''
                 ]);
             }
