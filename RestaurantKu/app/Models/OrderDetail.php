@@ -17,4 +17,8 @@ class OrderDetail extends Model
     public function menu(){
         return $this->hasOne(Menu::class, 'id', 'menu_id');
     }
+
+    public function order(){
+        return $this->hasOne(Order::class, 'id', 'order_id');
+    }
 }

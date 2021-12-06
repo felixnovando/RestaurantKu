@@ -22,4 +22,12 @@ class Customer extends Model
     public function pickup(){
         return $this->hasMany(Pickup::class,'customer_id','id');
     }
+
+    public function role(){
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
+
+    public function restoOwner(){
+        return $this->hasOne(RestaurantOwner::class, 'id', 'id');
+    }
 }

@@ -66,6 +66,8 @@ class CustomerController extends Controller
             'customer_email' => $request->email,
             'customer_password' => password_hash($request->password, PASSWORD_BCRYPT),
             'customer_dob' => $request->date,
+            //defaultnya tembak dulu 1
+            'role_id' => 1
         ]);
         return redirect('login');
     }

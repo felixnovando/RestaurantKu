@@ -44,5 +44,11 @@ class pickup_seeder extends Seeder
             'status' => 'ongoing',
             'pick_up_time' => date_time_set(date_create('2020-08-27'),12,0,0),
         ]);
+        DB::table('pickups')->insert([
+            'customer_id' => 1,
+            'resto_id' => 3,
+            'status' => 'ongoing',
+            'pick_up_time' => date_time_set(date_create('2020-08-27'),12,0,0),
+        ]);
     }
 }
